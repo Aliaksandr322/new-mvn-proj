@@ -63,7 +63,7 @@ class Square implements DrawAble{
 
     @Override
     public void play() {
-        
+
     }
 
     @Override
