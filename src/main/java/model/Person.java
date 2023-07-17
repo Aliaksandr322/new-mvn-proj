@@ -14,6 +14,7 @@ public class Person implements Cloneable{
     private String lastName;
     private int age;
     private Cat cat;
+    private Car car;
 
     public Person(int id, String name, String lastName, int age) {
         this.id = id;

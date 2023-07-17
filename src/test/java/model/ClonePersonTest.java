@@ -20,10 +20,9 @@ public class ClonePersonTest {
 
         System.out.println("Clone correct ? " + p3.equals(p4));
 
-        Person p6 = new Person(555, "Mike", "Tyson", 57, null);
+        Person p6 = new Person(555, "Mike", "Tyson", 57, null,null);
         Person p7 = p6.clone();
         System.out.println(p6.equals(p7));
-
     }
 
 }
