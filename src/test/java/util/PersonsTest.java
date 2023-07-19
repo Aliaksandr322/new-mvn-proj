@@ -3,6 +3,7 @@ package util;
 import errors.CarNotFoundException;
 import model.Car;
 import model.Person;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class PersonsTest {
@@ -25,5 +26,17 @@ public class PersonsTest {
         p1.setCar(car);
 
         PersonUtil.drive(p1);
+    }
+
+    @Test
+    public void driveTest2()  {
+        Person p1 = null;
+
+        try {
+            PersonUtil.drive(p1);
+        } catch (CarNotFoundException e) {
+            Throwable th = e.getCause();
+            Assert.assertEquals(NullPointerException.class, th.getClass());
+        }
     }
 }

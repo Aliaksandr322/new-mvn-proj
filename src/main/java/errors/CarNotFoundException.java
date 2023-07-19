@@ -10,4 +10,8 @@ public class CarNotFoundException extends Exception{
     public CarNotFoundException(String msg){
         super(msg);
     }
+
+    public CarNotFoundException(String person_is_null_, Exception e) {
+        super(person_is_null_,e);
+    }
 }
