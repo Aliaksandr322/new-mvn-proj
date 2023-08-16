@@ -64,9 +64,5 @@ public enum Week {
     public abstract void work();
 
 
-    WeekDay getWeekDayByCode(String shortName){
-        for (Week day : values()){
-            if
-        }
-    }
+
 }
