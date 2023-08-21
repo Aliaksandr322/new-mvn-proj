@@ -54,7 +54,8 @@ public class Test {
             }
 
 
-            Reader reader1 = new BufferedReader(new FileReader("D:\\io_tests\\war_and_peace.txt"));
+            Reader reader1 = new BufferedReader(
+                    new FileReader("D:\\io_tests\\war_and_peace.txt"));
             reader1.read();
             Date startDate = new Date();
             int characterCode2;
