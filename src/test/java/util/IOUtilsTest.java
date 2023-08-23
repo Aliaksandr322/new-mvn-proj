@@ -73,8 +73,11 @@ public class IOUtilsTest {
     }
 
     @Test
-    public void fileContainWordTest(){
-        
+    public void readByLineTest(){
+        String filePath = "D:\\io_tests\\war_and_peace.txt";
+        String data = IOUtils.readFileByLines(filePath);
+        System.out.println(data);
+        Assert.assertNotNull(data);
     }
 
 }

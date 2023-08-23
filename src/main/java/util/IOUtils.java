@@ -52,6 +52,28 @@ public class IOUtils {
     }
 
 
+    public static String readFileByLines(String path){
+        StringBuilder sb = new StringBuilder(214748364);
+        try (BufferedReader reader = new BufferedReader(new FileReader(path), 214748364)){
+            // используем try with resources . See AutoClosable так как reader AutoClosable он будет закрывать stream
+            String line;
+
+            while ((line = reader.readLine()) != null){
+                sb.append(line).append('\n');
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("Check your file path");
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return sb.toString();
+
+    }
+
+
     public static void write(String data, String path, boolean append){
         try (Writer writer = new BufferedWriter(new FileWriter(path , append))){
             writer.write(data);
@@ -125,3 +147,99 @@ class  Resource implements Closeable{
         System.out.println(data);
     }
 }
+
+class Tasks{
+    public static void main(String[] args) {
+        t1("D:\\io_tests\\tasks\\task#1.txt", "D:\\io_tests\\tasks\\task#2.txt");
+        t2("D:\\io_tests\\tasks\\task#3.txt", "D:\\io_tests\\tasks\\count_result.txt", "JAva");
+        t2("D:\\io_tests\\tasks\\task#3.txt", "D:\\io_tests\\tasks\\count_result.txt", new String("Java"));
+    }
+
+    public static void t1(String path , String resultPath){
+        System.out.println("---------Task #1 Revers file text---------");
+        //1 step : read content
+        String data = IOUtils.readFileByLines(path);
+        //2 step : process String value (reverce)
+        String result = new StringBuilder(data).reverse().toString();
+        //3 step : write result file
+        IOUtils.write(result,resultPath);
+
+    }
+    public static void t2(String filePath , String resultPath, String search){
+
+        int counter = 0;
+        String resultFormat = "\"%s\" : %d";
+        String data = IOUtils.readFileByLines(filePath).toLowerCase();
+        search = search.toLowerCase();
+        if (!data.toLowerCase().contains(search.toLowerCase())){
+            IOUtils.write(String.format(resultFormat,search,counter),resultPath);
+
+        }
+        else {
+//            String array[] = data.split(" ");
+//            for (int i = 0; i < array.length; i++) {
+//                if (array[i].equals(search.toLowerCase())) {
+//                    counter++;
+//                }
+//            }
+
+            int index ;
+            while ((index = data.indexOf(search)) != -1){
+                counter++;
+                data = data.substring(index + search.length());
+            }
+            IOUtils.write(String.format(resultFormat,search,counter),resultPath);
+        }
+    }
+
+//    public static void t2(String filePath , String resultPath, String... searchs){
+//
+//        //for each по массиву слов и дописывать в него
+//        for(String search : searchs) {
+//            int counter = 0;
+//            String resultFormat = "\"%s\" : %d";
+//            String data = IOUtils.readFileByLines(filePath).toLowerCase();
+//
+//            if (!data.toLowerCase().contains(search.toLowerCase())){
+//                IOUtils.write(String.format(resultFormat,search,counter),resultPath);
+//                return;
+//            }
+//            else {
+//                String array[] = data.split(" ");
+//                for (int i = 0; i < array.length; i++) {
+//                    if (array[i].equals(search.toLowerCase())) {
+//                        counter++;
+//                    }
+//                }
+//            }
+//            IOUtils.write(Integer.toString(counter), resultPath,true);
+//        }
+//    }
+}
+
+//   public static void t2(String filePath, String resultFilePath, String search){
+//        // <search word> : <counter>
+//        String resultFormat = "\"%s\" : %d";
+//        // example : "Java" : 14  (ignoring register) , "JAVA"
+//        //1 step: read content
+//        String data = IOUtils.readFile(filePath).toLowerCase();
+//        search = search.toLowerCase();
+//
+//        int counter = 0;
+//        //2 walk and count words in <search word> : <counter> format
+//        if(data.contains(search)){
+//
+//            int index;
+//            while ((index = data.indexOf(search)) != -1){
+//                counter++;
+//                data = data.substring(index + search.length());
+//            }
+//
+//        }
+//
+//        //3 save the results
+//        IOUtils.write(String.format(resultFormat, search, counter), resultFilePath);
+//
+//
+//
+//    }
