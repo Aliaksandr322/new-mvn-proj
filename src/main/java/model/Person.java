@@ -8,7 +8,8 @@ import java.util.Objects;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Person implements Cloneable{
+@ToString
+public class Person implements Cloneable , Comparable<Person>{
     private int id;
     private String name;
     private String lastName;
@@ -55,4 +56,12 @@ public class Person implements Cloneable{
         }
         return clone;
     }
+
+    @Override
+    public int compareTo(Person o) {
+        return this.lastName.compareTo(o.getLastName());
+    }
+
 }
+
+
