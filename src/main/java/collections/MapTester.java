@@ -10,8 +10,12 @@ public class MapTester {
         Map<Integer, String> map1 = new HashMap<>();
 
         map1.put(123, "John");
-        map1.put(123, "Mike");
+        map1.put(125, "Mike");
         System.out.println(map1.size());
+
+        map1.forEach((k,v) -> {
+            System.out.println("Key: " + k + " ,Value : " + v);
+        });
 
         Map<Passport, Human> map2 = new HashMap<>();
         map2.put(new Passport("MP124312",new Date()), new Human("Bob", "JJ",50));
