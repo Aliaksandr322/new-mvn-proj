@@ -27,7 +27,7 @@ public class ExtraThread extends Thread{
     public void run() {
         logBegin();
 
-        for (int i = 0; i < times && isActive; i++){
+        for (int i = 0; (i < times) && isActive; i++){
             ThreadUtils.sleep();
             int x = (int)(Math.random() * 1000);
             log("Random value is " + x);

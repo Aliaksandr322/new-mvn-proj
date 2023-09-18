@@ -33,7 +33,7 @@ public class ThreadUtils {
         }
     }
     public static void sleep(){
-        sleep((int)Math.random() * 3);
+        sleep((int)(Math.random() * 3));
     }
 
     public static void runInNewThread(Runnable target){
