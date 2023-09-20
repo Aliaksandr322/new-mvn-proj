@@ -18,9 +18,10 @@ public class ThreadUtils {
 
     public static void log(Object text){
         Thread th = Thread.currentThread();
-        System.out.println(String.format("%s[%s] : [%d] %s [%d]" ,
+
+        System.out.println(String.format("%s[%s] <%s> : [%d] %s [%d]" ,
                 text.toString(),
-                new Date().toString(), th.getId(),th.getName(),th.getPriority() ));
+                new Date().toString(),th.getState(), th.getId(), th.getName(),th.getPriority() ));
     }
 
     public static void sleep(double second){
