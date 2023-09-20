@@ -20,7 +20,7 @@ class Store{
     private int product = 0;
 
     public synchronized void get(){
-        while (product < 1){
+        while (product == 0){
             try {
                 ThreadUtils.log("Start waiting");
                 wait();
@@ -37,7 +37,7 @@ class Store{
     }
 
     public synchronized void put(){
-        while (product > 5){
+        while (product > 0){
             try {
                 wait();
             } catch (InterruptedException e) {
